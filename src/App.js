@@ -1,25 +1,63 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import Calendar from 'react-calendar';
+import AnchorLink from 'react-anchor-link-smooth-scroll'
+
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main id="main-front-page">
+
+        <section id="varauslista-container">
+
+          <div id="varauslista" class="container">
+            <h1>Varaukset</h1>
+
+            <ul>
+              <li>
+                <h3>Severi</h3>
+                <p>Varaus ajalle 1/2/2020 - 3/2/2020</p>
+              </li>
+              <li>
+                <h3>Lauri</h3>
+                <p>Varaus ajalle 15/2/2020 - 15/2/2020</p>
+              </li>
+              <li>
+                <h3>Isoäiti</h3>
+                <p>Varaus ajalle 3/3/2020 - 10/3/2020</p>
+              </li>
+            </ul>
+
+            <AnchorLink href="#uusi-varaus-container"><button class="btn" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
+
+          </div>
+
+        </section>
+
+        <section id="varauskalenteri-container">
+
+          <div id="varauskalenteri" class="container">
+            <Calendar />
+          </div>
+        </section>
+
+
+        <section id="uusi-varaus-container">
+
+          <div id="uusi-varaus" class="container">
+
+            <form>
+
+
+              <input type="submit" value="Lukitse varaus" class="btn" />
+            </form>
+
+          </div>
+
+        </section>
+    </main>
   );
 }
 

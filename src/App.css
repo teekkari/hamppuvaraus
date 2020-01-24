@@ -1,38 +1,59 @@
-.App {
-  text-align: center;
+#main-front-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#varauslista-container {
+  height: 100vh;
+  background-color: #eee;
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#varauskalenteri-container {
+  background-color: #32322d;
+  height: 100vh;
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#varauslista ul, ul li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#varauskalenteri {
+  max-height: 400px;
+}
+
+#uusi-varaus-container {
+  background-color: #32322d;
+  grid-column: 1 / span 2;
+}
+
+
+
+#uusi-varaus-btn {
+  margin: 40px 0px;
+  width: 100%;
+  background-color: #5d9fd0;
+}
+
+.container {
+  padding: 40px;
+}
+
+.btn {
+  padding: 15px;
+  font-size: 1.0rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn:active {
+  border: 5px solid #00000021;
 }
