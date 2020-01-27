@@ -1,3 +1,7 @@
+body {
+  color: #333;
+}
+
 #main-front-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -6,13 +10,11 @@
 
 #varauslista-container {
   height: 100vh;
-  background-color: #eee;
   grid-column: 1 / 1;
   grid-row: 1 / 1;
 }
 
 #varauskalenteri-container {
-  background-color: #32322d;
   height: 100vh;
   grid-column: 2 / 2;
   grid-row: 1 / 1;
@@ -26,21 +28,44 @@
   margin: 0px;
 }
 
+#varauslista li {
+  border-left: 3px solid #5d9fd0;
+  padding-left: 15px;
+}
+
 #varauskalenteri {
   max-height: 400px;
 }
 
 #uusi-varaus-container {
-  background-color: #32322d;
+  background-color: #454b5b;
   grid-column: 1 / span 2;
 }
 
+#uusi-varaus {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+}
+
+#uusi-varaus-form {
+  width: 300px;
+  padding: 0px 40px;
+}
+
+#uusi-varaus-form input, textarea {
+  width: 100%;
+}
 
 
 #uusi-varaus-btn {
-  margin: 40px 0px;
-  width: 100%;
+  width: 80%;
+  margin: 40px 10%;
   background-color: #5d9fd0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+  outline: 0;
 }
 
 .container {
@@ -48,12 +73,19 @@
 }
 
 .btn {
+  margin: 30px 0px;
   padding: 15px;
   font-size: 1.0rem;
   border: none;
   border-radius: 5px;
 }
 
-.btn:active {
-  border: 5px solid #00000021;
+.dark-bg {
+  background-color: #454b5b;
+  color: #eee;
+}
+
+.light-bg {
+  background-color: #eee;
+  color: #333;
 }

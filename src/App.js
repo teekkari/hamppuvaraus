@@ -3,6 +3,8 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
+import ReservationHandler from './components/ReservationHandler.js';
+
 
 import './App.css';
 
@@ -30,32 +32,23 @@ function App() {
               </li>
             </ul>
 
-            <AnchorLink href="#uusi-varaus-container"><button class="btn" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
+            <AnchorLink offset="-5" href="#uusi-varaus-container"><button class="btn" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
 
           </div>
 
         </section>
 
-        <section id="varauskalenteri-container">
+        <section id="varauskalenteri-container" class="dark-bg">
 
           <div id="varauskalenteri" class="container">
+            <h1>Kalenteri</h1>
             <Calendar />
           </div>
         </section>
 
 
-        <section id="uusi-varaus-container">
-
-          <div id="uusi-varaus" class="container">
-
-            <form>
-
-
-              <input type="submit" value="Lukitse varaus" class="btn" />
-            </form>
-
-          </div>
-
+        <section id="uusi-varaus-container" class="dark-bg">
+            <ReservationHandler />
         </section>
     </main>
   );
