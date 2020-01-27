@@ -1,0 +1,8 @@
+.calendar-tile-reserved {
+    background-color:#ff8585;
+    color: #800000;
+}
+
+.calendar-tile-free {
+    color: #333;
+}

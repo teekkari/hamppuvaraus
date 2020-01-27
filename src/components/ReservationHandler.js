@@ -13,7 +13,7 @@ class ReservationHandler extends React.Component {
 
     render() {
         return (
-        <div id="uusi-varaus" class="container">
+        <div id="uusi-varaus" className="container">
             <div id="uusi-varaus-form">
                 <h1>Uusi varaus</h1>
                 <div>
@@ -27,7 +27,7 @@ class ReservationHandler extends React.Component {
                     <textarea></textarea>
                 </div>
 
-                <button class="btn">Lukiste varaus</button>
+                <button className="btn">Lukiste varaus</button>
             </div>
             <div>
                 <h2>Varauksen alku</h2>
