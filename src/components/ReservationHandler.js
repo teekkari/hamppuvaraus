@@ -8,34 +8,52 @@ class ReservationHandler extends React.Component {
         super();
         this.state = {
             reserver : "",
+            phone: "",
+            startDate : null,
+            endDate : null,
         };
+    }
+
+    fieldCallback = (fieldName, event) => {
+        this.setState({
+            [fieldName] : event.target.value
+        });
+    }
+
+    calendarCallback = (fieldName, value) => {
+
+        const dateString = value.toISOString().split("T")[0];
+        this.setState({
+            [fieldName] : dateString,
+        });
     }
 
     render() {
         return (
         <div id="uusi-varaus" className="container">
+            <h1>Uusi varaus</h1>
             <div id="uusi-varaus-form">
-                <h1>Uusi varaus</h1>
+                <h2>Varauksen tiedot</h2>
                 <div>
-                    <label for="">Varaajan nimi</label><br/>
-                    <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja"/>
+                    <label htmlFor="">Varaajan nimi</label><br/>
+                    <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja" onChange={(event) => this.fieldCallback("reserver", event)}/>
                 </div>
                 <br/>
 
                 <div>
-                    <label for ="">Varauksen lisätiedot</label><br/>
-                    <textarea></textarea>
+                    <label htmlFor="uusi-varaus-puh">Puhelinnumero</label><br/>
+                    <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
                 </div>
 
-                <button className="btn">Lukiste varaus</button>
+                <button className="btn" onClick={ () => console.log(this.state)}>Lukitse varaus</button>
             </div>
             <div>
                 <h2>Varauksen alku</h2>
-                <Calendar/>
+                <Calendar onClickDay={(value) => this.calendarCallback("startDate", value)}/>
             </div>
             <div>
                 <h2>Varauksen loppu</h2>
-                <Calendar/>
+                <Calendar onClickDay={(value) => this.calendarCallback("endDate", value)}/>
             </div>
         </div>);
     }

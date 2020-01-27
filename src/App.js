@@ -12,7 +12,11 @@ function App() {
   return (
     <main id="main-front-page">
 
-        <section id="varauslista-container">
+        <header className="primary-bg">
+          <h1>Hamppukallio</h1>
+        </header>
+
+        <section id="varauslista-container" className="light-bg">
 
           <div id="varauslista" className="container">
             <h1>Varaukset</h1>
@@ -32,7 +36,7 @@ function App() {
               </li>
             </ul>
 
-            <AnchorLink offset="-5" href="#uusi-varaus-container"><button className="btn" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
+            <AnchorLink offset="-5" href="#uusi-varaus-container"><button className="btn primary-bg" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
 
           </div>
 

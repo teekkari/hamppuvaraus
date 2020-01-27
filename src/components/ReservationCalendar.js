@@ -8,15 +8,14 @@ class ReservationCalendar extends React.Component {
     constructor(props) {
         super(props);
 
-
         /*
             reservedDates: List[ List[2] ]
             each element is a 2d-array, range of the dates
         */
         this.state = {
             reservedDates : [
-                [new Date(2020, 0, 2), new Date(2020, 0, 5)],
-                [new Date(2020, 0, 10), new Date(2020, 0, 10)],
+                [new Date(2020, 0, 3), new Date(2020, 0, 5)],
+                [new Date(2020, 0, 10), new Date(2020, 0, 11)],
             ]
         }
     }
@@ -43,6 +42,19 @@ class ReservationCalendar extends React.Component {
         return (
             <div>
                 <Calendar tileClassName={this.getTileClass}/>
+
+                <hr/>
+
+                <h3>Esimerkit</h3>
+
+                <div className="example-day">
+                    <img alt="esimerkki vapaa päivä" src={ require("../img/vapaa_pv_esim.png") } />
+                    <span>Vapaa päivä</span>
+                </div>
+                <div className="example-day">
+                    <img className="example-day-img" alt="esimerkki varattu päivä" src={ require("../img/varattu_pv_esim.png")  } />
+                    <span>Varattu päivä</span>
+                </div>
             </div>
         );
     }

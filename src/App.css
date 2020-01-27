@@ -1,23 +1,53 @@
 body {
   color: #333;
+  font-size: 1.4rem;
+}
+
+hr {
+  border: 1px solid #3336;
+  margin: 30px;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.0rem;
+}
+
+h3 {
+  font-size: 1.5rem;
 }
 
 #main-front-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100vh 100vh;
+  grid-template-areas:  "header header"
+                        "lista kalenteri"
+                        "uusi uusi";
+  grid-template-rows: 10vh 90vh 100vh;
+}
+
+header {
+  grid-area: header;
+  background-color: #78ae93;
+  color: #444;
+  line-height: 10vh;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+header h1 {
+  margin: 0px;
+  margin-left: 40px;
 }
 
 #varauslista-container {
-  height: 100vh;
-  grid-column: 1 / 1;
-  grid-row: 1 / 1;
+  grid-area: lista;
 }
 
 #varauskalenteri-container {
-  height: 100vh;
-  grid-column: 2 / 2;
-  grid-row: 1 / 1;
+  grid-area: kalenteri;
   display: flex;
   justify-content: center;
 }
@@ -29,8 +59,8 @@ body {
 }
 
 #varauslista li {
-  border-left: 3px solid #5d9fd0;
-  padding-left: 15px;
+  border-left: 4px solid #8dc2e1;
+  padding-left: 20px;
 }
 
 #varauskalenteri {
@@ -38,14 +68,22 @@ body {
 }
 
 #uusi-varaus-container {
-  background-color: #454b5b;
+  grid-area: uusi;
   grid-column: 1 / span 2;
+
 }
 
 #uusi-varaus {
-  display: flex;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 15vh 1fr;
   justify-content: space-around;
+}
+
+#uusi-varaus h1 {
+  grid-row: 1 / 1;
+  grid-column: 1 / span 3;
+  padding-left: 40px;
 }
 
 #uusi-varaus-form {
@@ -59,14 +97,16 @@ body {
 
 
 #uusi-varaus-btn {
-  width: 80%;
+  width: 250px;
   margin: 40px 10%;
-  background-color: #5d9fd0;
-  color: #333;
   font-size: 1.2rem;
   font-weight: bold;
-  outline: 0;
+
+  position: absolute;
+  bottom: 0;
 }
+
+
 
 .container {
   padding: 40px;
@@ -75,9 +115,29 @@ body {
 .btn {
   margin: 30px 0px;
   padding: 15px;
+
   font-size: 1.0rem;
-  border: none;
-  border-radius: 5px;
+  border: 2px solid #2224;
+  border-radius: 10px;
+  outline: 0;
+
+  background-color: #8dc2e1;
+  color: #024267;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  -webkit-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.75);
+  transition: background-color 0.1s, box-shadow 0.1s;
+}
+
+.btn:active {
+  background-color: #76b1d3;
+  -webkit-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.4);
+  box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.4);
 }
 
 .dark-bg {
@@ -86,6 +146,11 @@ body {
 }
 
 .light-bg {
-  background-color: #eee;
-  color: #333;
+  background-color: #545c6f;
+  color: #eee;
+}
+
+.primary-bg {
+  background-color: #8dc2e1;
+  color: #024267;
 }

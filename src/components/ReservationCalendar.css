@@ -6,3 +6,17 @@
 .calendar-tile-free {
     color: #333;
 }
+
+.example-day {
+    margin-bottom: 10px;
+}
+
+.example-day img {
+    width: 50px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.example-day span {
+    padding: 10px;
+}
