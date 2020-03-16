@@ -1,5 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -10,8 +14,20 @@ const db = low(adapter);
 db.defaults({reservations: []}).write();
 
 
-app.get('/hamppu/uusi', (req, res) => {
-    console.log(req.body);
+app.post('/hamppu/uusi', (req, res) => {
+    const data = req.body;
+
+    // very basic form field validation
+    if (data.startDate === null || data.endDate === null || data.name == "") {
+      res.status(400).send();
+      return;
+    }
+
+    db.get('reservations')
+      .push(data)
+      .write();
+
+    res.status(200).send();
 });
 
 
