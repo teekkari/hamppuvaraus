@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-
+import axios from 'axios';
 
 class ReservationHandler extends React.Component {
 
@@ -25,6 +25,20 @@ class ReservationHandler extends React.Component {
         const dateString = value.toISOString().split("T")[0];
         this.setState({
             [fieldName] : dateString,
+        });
+    }
+
+    sendReservation = () => {
+
+        const postUrl = window.location.href + 'hamppu/uusi';
+
+        console.log(postUrl);
+
+        axios.post(postUrl, {
+            name: this.state.reserver,
+            phone: this.state.phone,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate
         });
     }
 
