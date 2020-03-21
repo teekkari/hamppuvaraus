@@ -22,6 +22,8 @@ class ReservationHandler extends React.Component {
 
     calendarCallback = (fieldName, value) => {
 
+        console.log(value);
+
         const dateString = value.toISOString().split("T")[0];
         this.setState({
             [fieldName] : dateString,
@@ -30,16 +32,22 @@ class ReservationHandler extends React.Component {
 
     sendReservation = () => {
 
-        const postUrl = window.location.href + 'hamppu/uusi';
+        const postUrl = 'http://localhost:5000/hamppu/uusi';
 
-        console.log(postUrl);
-
-        axios.post(postUrl, {
+        const params = {
             name: this.state.reserver,
             phone: this.state.phone,
             startDate: this.state.startDate,
             endDate: this.state.endDate
-        });
+        };
+
+        console.log(params);
+
+        /*
+        axios.post(postUrl, params)
+        .then( (res) => alert("Varaus lisätty onnistuneesti."))
+        .catch( (error) => alert("Varauksessa tuli ongelma. Tarkasta varauksen tiedot ja yritä uudelleen."));
+        */
     }
 
     render() {
@@ -49,7 +57,7 @@ class ReservationHandler extends React.Component {
             <div id="uusi-varaus-form">
                 <h2>Varauksen tiedot</h2>
                 <div>
-                    <label htmlFor="">Varaajan nimi</label><br/>
+                    <label htmlFor="">Varaajan nimi *</label><br/>
                     <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja" onChange={(event) => this.fieldCallback("reserver", event)}/>
                 </div>
                 <br/>
@@ -59,15 +67,15 @@ class ReservationHandler extends React.Component {
                     <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
                 </div>
 
-                <button className="btn" onClick={ () => console.log(this.state)}>Lukitse varaus</button>
+                <button className="btn" onClick={this.sendReservation}>Lukitse varaus</button>
             </div>
             <div>
-                <h2>Varauksen alku</h2>
-                <Calendar onClickDay={(value) => this.calendarCallback("startDate", value)}/>
+                <h2>Varauksen alku *</h2>
+                <Calendar locale="UTC" onClickDay={(value) => this.calendarCallback("startDate", value)}/>
             </div>
             <div>
-                <h2>Varauksen loppu</h2>
-                <Calendar onClickDay={(value) => this.calendarCallback("endDate", value)}/>
+                <h2>Varauksen loppu *</h2>
+                <Calendar locale="UTC" onClickDay={(value) => this.calendarCallback("endDate", value)}/>
             </div>
         </div>);
     }
