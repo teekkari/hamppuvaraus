@@ -24,7 +24,15 @@ class ReservationHandler extends React.Component {
 
         console.log(value);
 
-        const dateString = value.toISOString().split("T")[0];
+        const day = value.getDate();
+        const month = value.getMonth() + 1;
+        const year = value.getFullYear();
+
+        const dateString = [year, month, day].join('-');
+
+        //const dateString = value.toISOString().split("T")[0];
+
+        console.log(dateString);
         this.setState({
             [fieldName] : dateString,
         });
@@ -71,11 +79,11 @@ class ReservationHandler extends React.Component {
             </div>
             <div>
                 <h2>Varauksen alku *</h2>
-                <Calendar locale="UTC" onClickDay={(value) => this.calendarCallback("startDate", value)}/>
+                <Calendar onClickDay={(value) => this.calendarCallback("startDate", value)}/>
             </div>
             <div>
                 <h2>Varauksen loppu *</h2>
-                <Calendar locale="UTC" onClickDay={(value) => this.calendarCallback("endDate", value)}/>
+                <Calendar onClickDay={(value) => this.calendarCallback("endDate", value)}/>
             </div>
         </div>);
     }
