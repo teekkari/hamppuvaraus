@@ -1,3 +1,7 @@
+.varauskalenteri-calendar {
+    width: auto;
+}
+
 .calendar-tile-reserved {
     background-color:#ff8585;
     color: #800000;
