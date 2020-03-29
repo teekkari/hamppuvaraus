@@ -1,5 +1,6 @@
 import React from "react";
 import Calendar from 'react-calendar';
+import axios from 'axios';
 
 import './ReservationCalendar.css';
 
@@ -13,14 +14,16 @@ class ReservationCalendar extends React.Component {
             each element is a 2d-array, range of the dates
         */
         this.state = {
-            reservedDates : [
-                [new Date(2020, 0, 3), new Date(2020, 0, 5)],
-                [new Date(2020, 0, 10), new Date(2020, 0, 11)],
-            ]
+            loading: true,
+            reservedDates : []
         }
+
+        this.fetchReservedDates();
     }
 
     getTileClass = (cobj) => {
+
+        console.log(this.state);
 
         const { activeStartDate, date, view } = cobj;
 
@@ -38,22 +41,49 @@ class ReservationCalendar extends React.Component {
         return "calendar-tile-free";
     }
 
+    fetchReservedDates = () => {
+        const postUrl = 'http://localhost:5000/hamppu/list';
+        axios.get(postUrl)
+            .then( (res) => { this.setState({
+                                loading: false,
+                                reservedDates: this.processFetched(res.data)
+                            });
+            }).catch( (error) => null);
+    }
+
+    processFetched = (data) => {
+
+        let processed = [];
+
+        for (const obj of data) {
+            processed.push([new Date(obj.startDate), new Date(obj.endDate)]);
+        }
+
+        return processed;
+
+    }
+
     render() {
-        return (
-            <div>
-                <Calendar className="varauskalenteri-calendar" tileClassName={this.getTileClass}/>
 
-                <hr/>
+        if (this.state.loading) {
+            return <div>Loading ...</div>;
+        } else {
+            return (
+                <div>
+                    <Calendar className="varauskalenteri-calendar" tileClassName={this.getTileClass}/>
 
-                <div className="example-day">
-                    <img alt="esimerkki vapaa päivä" src={ require("../img/vapaa_pv_esim.png") } />
-                    <span>Vapaa päivä</span>
+                    <hr/>
 
-                    <img className="example-day-img" alt="esimerkki varattu päivä" src={ require("../img/varattu_pv_esim.png")  } />
-                    <span>Varattu päivä</span>
+                    <div className="example-day">
+                        <img alt="esimerkki vapaa päivä" src={ require("../img/vapaa_pv_esim.png") } />
+                        <span>Vapaa päivä</span>
+
+                        <img className="example-day-img" alt="esimerkki varattu päivä" src={ require("../img/varattu_pv_esim.png")  } />
+                        <span>Varattu päivä</span>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

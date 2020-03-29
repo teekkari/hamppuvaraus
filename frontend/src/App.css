@@ -50,7 +50,8 @@ section h1 {
   grid-area: lista;
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  max-width: 60vw;
+  min-width: 40vw;
 }
 
 #varauslista {
