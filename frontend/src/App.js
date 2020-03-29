@@ -4,6 +4,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import ReservationHandler from './components/ReservationHandler.js';
 import ReservationCalendar from './components/ReservationCalendar.js';
+import ReservationList from './components/ReservationList.js';
 
 
 import './App.css';
@@ -18,26 +19,15 @@ function App() {
 
         <section id="varauslista-container" className="light-bg">
 
+
           <div id="varauslista" className="container">
-            <h1>Varaukset</h1>
 
-            <ul>
-              <li>
-                <h3>Severi</h3>
-                <p>Varaus ajalle 1/2/2020 - 3/2/2020</p>
-              </li>
-              <li>
-                <h3>Lauri</h3>
-                <p>Varaus ajalle 15/2/2020 - 15/2/2020</p>
-              </li>
-              <li>
-                <h3>Isoäiti</h3>
-                <p>Varaus ajalle 3/3/2020 - 10/3/2020</p>
-              </li>
-            </ul>
+            <ReservationList />
 
-            <AnchorLink offset="-5" href="#uusi-varaus-container"><button className="btn primary-bg" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
-
+          </div>
+          
+          <div id="uusivaraus-nappi">
+                    <AnchorLink offset="-5" href="#uusi-varaus-container"><button className="btn primary-bg" id="uusi-varaus-btn">Tee uusi varaus</button></AnchorLink>
           </div>
 
         </section>
