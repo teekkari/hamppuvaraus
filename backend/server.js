@@ -15,19 +15,24 @@ db.defaults({reservations: []}).write();
 
 
 app.post('/hamppu/uusi', (req, res) => {
-    const data = req.body;
+  const data = req.body;
 
-    // very basic form field validation
-    if (data.startDate === null || data.endDate === null || data.name == "") {
-      res.status(400).send();
-      return;
-    }
+  // very basic form field validation
+  if (data.startDate === null || data.endDate === null || data.name == "") {
+    res.status(400).send();
+    return;
+  }
 
-    db.get('reservations')
-      .push(data)
-      .write();
+  db.get('reservations')
+    .push(data)
+    .write();
 
-    res.status(200).send();
+  res.status(200).send();
+});
+
+app.get('/hamppu/list', (req, res) => {
+  const reservationList = db.get('reservations').value();
+  res.send(reservationList);
 });
 
 
