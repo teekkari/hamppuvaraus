@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import axios from 'axios';
 
 class ReservationHandler extends React.Component {
@@ -76,6 +77,9 @@ class ReservationHandler extends React.Component {
                 </div>
 
                 <button className="btn" onClick={this.sendReservation}>Lukitse varaus</button>
+                <AnchorLink href="#main-front-page">
+                    <button className="btn darker-bg">Takaisin</button>
+                </AnchorLink>
             </div>
             <div>
                 <h2>Varauksen alku *</h2>
