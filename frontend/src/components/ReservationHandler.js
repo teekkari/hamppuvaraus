@@ -50,13 +50,13 @@ class ReservationHandler extends React.Component {
             endDate: this.state.endDate
         };
 
-        console.log(params);
-
-        /*
         axios.post(postUrl, params)
-        .then( (res) => alert("Varaus lisätty onnistuneesti."))
+        .then( (res) => {
+            alert("Varaus lisätty onnistuneesti.");
+            window.location.reload(true);
+            window.location.assign(window.location.href.split("#")[0] + "#main-front-page")
+        })
         .catch( (error) => alert("Varauksessa tuli ongelma. Tarkasta varauksen tiedot ja yritä uudelleen."));
-        */
     }
 
     render() {
@@ -71,7 +71,7 @@ class ReservationHandler extends React.Component {
                 </div>
                 <br/>
 
-                <div>
+                <div className="bottom-spacer">
                     <label htmlFor="uusi-varaus-puh">Puhelinnumero</label><br/>
                     <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
                 </div>

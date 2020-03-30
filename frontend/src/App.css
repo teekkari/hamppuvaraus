@@ -13,7 +13,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.0rem;
+  font-size: 2.0rem;
 }
 
 h3 {
@@ -58,7 +58,7 @@ section h1 {
   height: 70%;
   overflow-y: auto;
   box-shadow:         inset 0px -10px 20px #33333355;
-  border-bottom: 1px solid #333333CC;
+  border-bottom: 1px solid #333333AA;
 }
 
 #uusivaraus-nappi {
@@ -72,6 +72,7 @@ section h1 {
   grid-area: kalenteri;
   display: flex;
   justify-content: center;
+  min-width: 50vw;
 }
 
 #varauslista ul, ul li {
@@ -183,4 +184,8 @@ section h1 {
 .primary-bg {
   background-color: #8dc2e1;
   color: #024267;
+}
+
+.bottom-spacer {
+  margin-bottom: 25px;
 }

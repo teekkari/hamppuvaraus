@@ -22,9 +22,6 @@ class ReservationCalendar extends React.Component {
     }
 
     getTileClass = (cobj) => {
-
-        console.log(this.state);
-
         const { activeStartDate, date, view } = cobj;
 
         if (view !== 'month') return;
