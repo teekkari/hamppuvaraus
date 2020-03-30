@@ -26,14 +26,26 @@ class ReservationList extends React.Component {
         let outputList = [];
 
         for (const res of this.state.reservations) {
+
+            const startDate = res.startDate.split("-")[2] + "." + res.startDate.split("-")[1] + ".";
+            const endDate = res.endDate.split("-")[2] + "." + res.endDate.split("-")[1] + ".";
             outputList.push(
                 <li>
                     <h3>{res.name}</h3>
-                    <p>Varaus ajalle {res.startDate} - {res.endDate}</p>
+                    <p>Varaus ajalle <b>{startDate} - {endDate}</b></p>
                 </li>
             );
         }
-        return(<ul>{outputList}</ul>);
+
+        if (outputList.length === 0) {
+            return (
+                <div className="info-box">
+                    Ei tulevia varauksia.
+                </div>
+            );
+        } else {
+            return(<ul>{outputList}</ul>);
+        }
     }
 
     render() {
