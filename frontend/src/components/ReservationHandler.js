@@ -70,14 +70,13 @@ class ReservationHandler extends React.Component {
                     <label htmlFor="">Varaajan nimi *</label><br/>
                     <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja" onChange={(event) => this.fieldCallback("reserver", event)}/>
                 </div>
-                <br/>
 
-                <div className="bottom-spacer">
+                <div>
                     <label htmlFor="uusi-varaus-puh">Puhelinnumero</label><br/>
                     <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
                 </div>
 
-                <button className="btn" onClick={this.sendReservation}>Lukitse varaus</button>
+                <button className="btn bottom-spacer" onClick={this.sendReservation}>Lukitse varaus</button>
                 <AnchorLink href="#main-front-page">
                     <button className="btn darker-bg">Takaisin</button>
                 </AnchorLink>
