@@ -15,7 +15,7 @@ class ReservationList extends React.Component {
     }
 
     fetchReservations = () => {
-        const postUrl = 'http://localhost:5000/hamppu/list';
+        const postUrl = "http://" + window.location.host.split(":")[0] + ":5000/hamppu/list";
         axios.get(postUrl)
             .then( (res) => this.setState({ reservations: res.data }) )
             .catch( (error) => null);
@@ -29,8 +29,6 @@ class ReservationList extends React.Component {
         console.log(currentDate);
 
         for (const res of this.state.reservations) {
-
-            console.log(res.startDate);
 
             if (new Date(res.startDate) < currentDate) {
                 continue;

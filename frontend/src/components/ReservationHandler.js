@@ -41,7 +41,8 @@ class ReservationHandler extends React.Component {
 
     sendReservation = () => {
 
-        const postUrl = 'http://localhost:5000/hamppu/uusi';
+        //const postUrl = 'http://localhost:5000/hamppu/uusi';
+        const postUrl = "http://" + window.location.host.split(":")[0] + ":5000/hamppu/uusi";
 
         const params = {
             name: this.state.reserver,

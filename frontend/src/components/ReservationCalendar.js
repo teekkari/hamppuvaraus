@@ -39,7 +39,7 @@ class ReservationCalendar extends React.Component {
     }
 
     fetchReservedDates = () => {
-        const postUrl = 'http://localhost:5000/hamppu/list';
+        const postUrl = "http://" + window.location.host.split(":")[0] + ":5000/hamppu/list";
         axios.get(postUrl)
             .then( (res) => { this.setState({
                                 loading: false,
