@@ -24,8 +24,17 @@ class ReservationList extends React.Component {
     renderReservations() {
 
         let outputList = [];
+        const currentDate = new Date();//.toISOString().split("T")[0];
+
+        console.log(currentDate);
 
         for (const res of this.state.reservations) {
+
+            console.log(res.startDate);
+
+            if (new Date(res.startDate) < currentDate) {
+                continue;
+            }
 
             const startDate = res.startDate.split("-")[2] + "." + res.startDate.split("-")[1] + ".";
             const endDate = res.endDate.split("-")[2] + "." + res.endDate.split("-")[1] + ".";
@@ -51,7 +60,7 @@ class ReservationList extends React.Component {
     render() {
         return (
             <>
-                <h1>Varaukset</h1>
+                <h1>Tulevat varaukset</h1>
                 {this.renderReservations()}
             </>
         );
