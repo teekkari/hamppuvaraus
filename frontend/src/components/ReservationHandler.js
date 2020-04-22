@@ -57,7 +57,15 @@ class ReservationHandler extends React.Component {
             window.location.reload(true);
             window.location.assign(window.location.href.split("#")[0] + "#main-front-page")
         })
-        .catch( (error) => alert("Varauksessa tuli ongelma. Tarkasta varauksen tiedot ja yritä uudelleen."));
+        .catch( (error) => {
+            if (error.response.status === 400) {
+                alert("Varauksesta puuttuu tietoja. Täytä varauksen alku, loppu ja varaajan nimi.");
+            }
+
+            if (error.response.status === 500) {
+                alert("Varaus on päällekkäin olemassaolevien kanssa. Vaihda varauksen ajankohtaa.")
+            }
+        });
     }
 
     render() {
