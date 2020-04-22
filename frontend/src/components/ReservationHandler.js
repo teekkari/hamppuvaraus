@@ -62,6 +62,10 @@ class ReservationHandler extends React.Component {
                 alert("Varauksesta puuttuu tietoja. Täytä varauksen alku, loppu ja varaajan nimi.");
             }
 
+            if (error.response.status === 416) {
+                alert("Varaus epäonnistui. Syöttämmäsi varauksen alkamisaika on loppumisen jälkeen.")
+            }
+
             if (error.response.status === 500) {
                 alert("Varaus on päällekkäin olemassaolevien kanssa. Vaihda varauksen ajankohtaa.")
             }

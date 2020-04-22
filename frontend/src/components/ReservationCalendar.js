@@ -28,14 +28,17 @@ class ReservationCalendar extends React.Component {
 
         for (let x in this.state.reservedDates) {
 
-            const [startDate, endDate] = this.state.reservedDates[x];
+            let [startDate, endDate] = this.state.reservedDates[x];
+            startDate = parseInt(startDate.getFullYear().toString() + startDate.getMonth().toString().padStart(2, '0') + startDate.getDate().toString().padStart(2, '0'));
+            endDate = parseInt(endDate.getFullYear().toString() + endDate.getMonth().toString().padStart(2, '0') + endDate.getDate().toString().padStart(2, '0'));
 
-            // pretty fken ugly but at least dont have to deal with timezones.
-            if (   (startDate.getFullYear() <= date.getFullYear() && date.getFullYear() <= endDate.getFullYear())
-                && (startDate.getMonth() <= date.getMonth() && date.getMonth() <= endDate.getMonth()) 
-                && (startDate.getDate() <= date.getDate() && date.getDate() <= endDate.getDate())) {
-                    return "calendar-tile-reserved";
-                }
+            const cdate = parseInt(date.getFullYear().toString() + date.getMonth().toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0'));
+
+
+            if (startDate <= cdate && cdate <= endDate) {
+                return "calendar-tile-reserved";
+            }
+
         }
 
         return "calendar-tile-free";

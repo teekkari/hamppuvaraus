@@ -23,6 +23,12 @@ app.post('/hamppu/uusi', (req, res) => {
     return;
   }
 
+  // reservation start date after end date -> we dont like that!
+  if (new Date(data.startDate) > new Date(data.endDate)) {
+    res.status(416).send();
+    return;
+  }
+
   const overlappingReservations = db.get('reservations')
                                     .filter(function(x) { return filterDateOverlap(x, data) })
                                     .value()
@@ -56,27 +62,16 @@ app.listen(PORT, () => {
 
 function filterDateOverlap(reservationObject, newReservation) {
 
-  const ostart = reservationObject.startDate.split("-").map(x => parseInt(x));
-  const oend = reservationObject.endDate.split("-").map(x => parseInt(x));
+  // we turn ISO string to int ( "2020-5-3" -> 20200503 )
+  const ostart = parseInt(reservationObject.startDate.split("-").map( x => x.padStart(2, '0')).join(""));
+  const oend = parseInt(reservationObject.endDate.split("-").map( x => x.padStart(2, '0')).join(""));
 
-  const nstart = newReservation.startDate.split("-").map(x => parseInt(x));
-  const nend = newReservation.endDate.split("-").map(x => parseInt(x));
+  const nstart = parseInt(newReservation.startDate.split("-").map( x => x.padStart(2, '0')).join(""));
+  const nend = parseInt(newReservation.endDate.split("-").map( x => x.padStart(2, '0')).join(""));
 
-
-  // if diff. years they probably not overlapping..
-  if (ostart[0] != nstart[0]) {
-    return false;
+  if (ostart <= nend && nstart <= oend) {
+    return true;
   }
-
-  // month overlap
-  if (ostart[1] <= nend[1] && nstart[1] <= oend[1]) {
-
-    // day overlap
-    if (ostart[2] <= nend[2] && nstart[2] <= oend[2]) {
-      return true;
-    }
-  }
-
 
   return false;
 }
