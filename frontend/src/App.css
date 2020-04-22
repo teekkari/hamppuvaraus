@@ -252,7 +252,9 @@ section h1 {
 
   #varauslista {
     height: auto;
-    min-height: 70%;
+    min-height: 200px;
+    box-shadow: none;
+    border-bottom: none;
   }
 
 }
