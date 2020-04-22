@@ -26,8 +26,6 @@ class ReservationList extends React.Component {
         let outputList = [];
         const currentDate = new Date();//.toISOString().split("T")[0];
 
-        console.log(currentDate);
-
         for (const res of this.state.reservations) {
 
             if (new Date(res.startDate) < currentDate) {

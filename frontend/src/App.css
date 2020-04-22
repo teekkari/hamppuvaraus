@@ -109,11 +109,16 @@ section h1 {
 
 }
 
+#uusi-varaus-flex {
+  display: flex;
+}
+
+#uusi-varaus-kalenterit-flex {
+  display: flex;
+}
+
 #uusi-varaus {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 15vh 1fr;
-  justify-content: space-around;
+  
 }
 
 #uusi-varaus h1 {
@@ -124,7 +129,6 @@ section h1 {
 
 #uusi-varaus-form {
   width: 300px;
-  padding: 0px 40px;
 }
 
 #uusi-varaus-form input, textarea {
@@ -148,6 +152,10 @@ section h1 {
 
 .container {
   padding: 40px;
+}
+
+.container-side {
+  padding: 0px 40px;
 }
 
 .btn {
@@ -214,3 +222,91 @@ section h1 {
   padding: 40px;
   text-align: center;
 }
+
+
+/***** MEDIA QUERIES *****/
+
+@media screen and (max-width: 1200px) {
+
+  #main-front-page {
+    display: grid;
+    grid-template-areas:  "header"
+                          "kalenteri"
+                          "lista"
+                          "uusi";
+    grid-template-rows: 10vh 90vh auto auto;
+    grid-template-columns: 1fr;
+  }
+
+  #uusivaraus-nappi {
+    height: 130px;
+  }
+
+  #uusi-varaus-flex {
+    flex-direction: column-reverse;
+  }
+
+  #varauslista-container {
+    max-width: 100%;
+  }
+
+  #varauslista {
+    height: auto;
+    min-height: 70%;
+  }
+
+}
+
+
+@media screen and (max-width: 950px) {
+
+  body {
+    font-size: 1.0rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  #uusi-varaus-kalenterit-flex {
+    flex-direction: column;
+  }
+
+  #uusi-varaus-flex {
+    align-items: center;
+  }
+
+  #uusi-varaus h1,h2 {
+    text-align: center;
+    padding: 0px;
+  }
+
+  #varauskalenteri {
+    width: 80%;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  #varauskalenteri {
+    width: 95%;
+  }
+
+  #uusi-varaus {
+    padding: 0px;
+  }
+
+  .container-side {
+    padding: 0px;
+  }
+}
+
+

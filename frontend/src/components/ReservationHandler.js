@@ -64,30 +64,37 @@ class ReservationHandler extends React.Component {
         return (
         <div id="uusi-varaus" className="container">
             <h1>Uusi varaus</h1>
-            <div id="uusi-varaus-form">
-                <h2>Varauksen tiedot</h2>
-                <div>
-                    <label htmlFor="">Varaajan nimi *</label><br/>
-                    <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja" onChange={(event) => this.fieldCallback("reserver", event)}/>
+
+            <div id="uusi-varaus-flex">
+
+                <div id="uusi-varaus-form" className="container-side">
+                    <h2>Varauksen tiedot</h2>
+                    <div>
+                        <label htmlFor="uusi-varaus-varaaja">Varaajan nimi *</label><br/>
+                        <input type="text" id="uusi-varaus-varaaja" name="uusi-varaus-varaaja" onChange={(event) => this.fieldCallback("reserver", event)}/>
+                    </div>
+
+                    <div>
+                        <label htmlFor="uusi-varaus-puh">Puhelinnumero</label><br/>
+                        <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
+                    </div>
+
+                    <button className="btn bottom-spacer" onClick={this.sendReservation}>Lukitse varaus</button>
+                    <AnchorLink href="#main-front-page" offset="20">
+                        <button className="btn darker-bg">Takaisin</button>
+                    </AnchorLink>
+                </div>
+                <div id="uusi-varaus-kalenterit-flex">
+                    <div className="container-side">
+                        <h2>Varauksen alku *</h2>
+                        <Calendar onClickDay={(value) => this.calendarCallback("startDate", value)}/>
+                    </div>
+                    <div className="container-side">
+                        <h2>Varauksen loppu *</h2>
+                        <Calendar onClickDay={(value) => this.calendarCallback("endDate", value)}/>
+                    </div>
                 </div>
 
-                <div>
-                    <label htmlFor="uusi-varaus-puh">Puhelinnumero</label><br/>
-                    <input type="text" id="uusi-varaus-puh" name="uusi-varaus-puh" onChange={(event) => this.fieldCallback("phone", event)}/>
-                </div>
-
-                <button className="btn bottom-spacer" onClick={this.sendReservation}>Lukitse varaus</button>
-                <AnchorLink href="#main-front-page">
-                    <button className="btn darker-bg">Takaisin</button>
-                </AnchorLink>
-            </div>
-            <div>
-                <h2>Varauksen alku *</h2>
-                <Calendar onClickDay={(value) => this.calendarCallback("startDate", value)}/>
-            </div>
-            <div>
-                <h2>Varauksen loppu *</h2>
-                <Calendar onClickDay={(value) => this.calendarCallback("endDate", value)}/>
             </div>
         </div>);
     }

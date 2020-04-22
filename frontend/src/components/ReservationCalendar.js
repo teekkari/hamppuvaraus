@@ -77,7 +77,8 @@ class ReservationCalendar extends React.Component {
                     <div className="example-day">
                         <img alt="esimerkki vapaa päivä" src={ require("../img/vapaa_pv_esim.png") } />
                         <span>Vapaa päivä</span>
-
+                    </div>
+                    <div className="example-day">
                         <img className="example-day-img" alt="esimerkki varattu päivä" src={ require("../img/varattu_pv_esim.png")  } />
                         <span>Varattu päivä</span>
                     </div>

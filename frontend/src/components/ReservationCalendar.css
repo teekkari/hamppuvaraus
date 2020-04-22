@@ -12,6 +12,7 @@
 }
 
 .example-day {
+    display: inline;
     margin-bottom: 10px;
 }
 
@@ -23,4 +24,10 @@
 
 .example-day span {
     padding: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .example-day {
+        display: block;
+    }
 }
