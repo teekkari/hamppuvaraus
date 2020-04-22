@@ -23,6 +23,17 @@ app.post('/hamppu/uusi', (req, res) => {
     return;
   }
 
+  const overlappingReservations = db.get('reservations')
+                                    .filter(function(x) { return filterDateOverlap(x, data) })
+                                    .value()
+
+
+  // overlapping 
+  if (overlappingReservations.length > 0) {
+    res.status(500).send();
+    return;
+  }
+
   db.get('reservations')
     .push(data)
     .write();
@@ -41,3 +52,31 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)
 });
+
+
+function filterDateOverlap(reservationObject, newReservation) {
+
+  const ostart = reservationObject.startDate.split("-").map(x => parseInt(x));
+  const oend = reservationObject.endDate.split("-").map(x => parseInt(x));
+
+  const nstart = newReservation.startDate.split("-").map(x => parseInt(x));
+  const nend = newReservation.endDate.split("-").map(x => parseInt(x));
+
+
+  // if diff. years they probably not overlapping..
+  if (ostart[0] != nstart[0]) {
+    return false;
+  }
+
+  // month overlap
+  if (ostart[1] <= nend[1] && nstart[1] <= oend[1]) {
+
+    // day overlap
+    if (ostart[2] <= nend[2] && nstart[2] <= oend[2]) {
+      return true;
+    }
+  }
+
+
+  return false;
+}
