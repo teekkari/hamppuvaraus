@@ -30,9 +30,12 @@ class ReservationCalendar extends React.Component {
 
             const [startDate, endDate] = this.state.reservedDates[x];
 
-            if (startDate <= date && date <= endDate) {
-                return "calendar-tile-reserved";
-            }
+            // pretty fken ugly but at least dont have to deal with timezones.
+            if (   (startDate.getFullYear() <= date.getFullYear() && date.getFullYear() <= endDate.getFullYear())
+                && (startDate.getMonth() <= date.getMonth() && date.getMonth() <= endDate.getMonth()) 
+                && (startDate.getDate() <= date.getDate() && date.getDate() <= endDate.getDate())) {
+                    return "calendar-tile-reserved";
+                }
         }
 
         return "calendar-tile-free";
