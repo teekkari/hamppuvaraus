@@ -1,4 +1,9 @@
 # Hamppuvaraus
 
 Reservation system for our family cottage.
-Still under development but in a working state.
+
+Project pilot is ready and will be tested "in production" soon.
+
+## UI Screenshots
+
+![Desktop screenshot](https://teekkari.net/img/hamppuvaraus_ui.png "Desktop screenshot")
