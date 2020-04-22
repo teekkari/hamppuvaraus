@@ -260,22 +260,6 @@ section h1 {
 
 @media screen and (max-width: 950px) {
 
-  body {
-    font-size: 1.0rem;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-  }
-
   #uusi-varaus-kalenterit-flex {
     flex-direction: column;
   }
@@ -296,12 +280,29 @@ section h1 {
 
 
 @media screen and (max-width: 700px) {
+
+  body {
+    font-size: 1.0rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
   #varauskalenteri {
     width: 95%;
   }
 
   #uusi-varaus {
-    padding: 0px;
+    padding: 40px 0px;
   }
 
   .container-side {
