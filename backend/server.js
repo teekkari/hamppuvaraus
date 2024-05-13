@@ -1,20 +1,24 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "",
+};
+
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
+app.options("*", cors({ credentials: true, origin: true }));
 
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
-const adapter = new FileSync('db.json');
+const adapter = new FileSync("db.json");
 const db = low(adapter);
 
-db.defaults({reservations: []}).write();
+db.defaults({ reservations: [] }).write();
 
-
-app.post('/hamppu/uusi', (req, res) => {
+app.post("/hamppu/uusi", (req, res) => {
   const data = req.body;
 
   // very basic form field validation
@@ -29,45 +33,62 @@ app.post('/hamppu/uusi', (req, res) => {
     return;
   }
 
-  const overlappingReservations = db.get('reservations')
-                                    .filter(function(x) { return filterDateOverlap(x, data) })
-                                    .value()
+  const overlappingReservations = db
+    .get("reservations")
+    .filter(function (x) {
+      return filterDateOverlap(x, data);
+    })
+    .value();
 
-
-  // overlapping 
+  // overlapping
   if (overlappingReservations.length > 0) {
     res.status(500).send();
     return;
   }
 
-  db.get('reservations')
-    .push(data)
-    .write();
+  db.get("reservations").push(data).write();
 
   res.status(200).send();
 });
 
-app.get('/hamppu/list', (req, res) => {
-  const reservationList = db.get('reservations').value();
+app.get("/hamppu/list", (req, res) => {
+  const reservationList = db.get("reservations").value();
   res.send(reservationList);
 });
-
 
 const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
+  console.log(`server running on port ${PORT}`);
 });
 
-
 function filterDateOverlap(reservationObject, newReservation) {
-
   // we turn ISO string to int ( "2020-5-3" -> 20200503 )
-  const ostart = parseInt(reservationObject.startDate.split("-").map( x => x.padStart(2, '0')).join(""));
-  const oend = parseInt(reservationObject.endDate.split("-").map( x => x.padStart(2, '0')).join(""));
+  const ostart = parseInt(
+    reservationObject.startDate
+      .split("-")
+      .map((x) => x.padStart(2, "0"))
+      .join("")
+  );
+  const oend = parseInt(
+    reservationObject.endDate
+      .split("-")
+      .map((x) => x.padStart(2, "0"))
+      .join("")
+  );
 
-  const nstart = parseInt(newReservation.startDate.split("-").map( x => x.padStart(2, '0')).join(""));
-  const nend = parseInt(newReservation.endDate.split("-").map( x => x.padStart(2, '0')).join(""));
+  const nstart = parseInt(
+    newReservation.startDate
+      .split("-")
+      .map((x) => x.padStart(2, "0"))
+      .join("")
+  );
+  const nend = parseInt(
+    newReservation.endDate
+      .split("-")
+      .map((x) => x.padStart(2, "0"))
+      .join("")
+  );
 
   if (ostart <= nend && nstart <= oend) {
     return true;
